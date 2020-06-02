@@ -1,8 +1,11 @@
 /* 
  * C BY 8 EXAMPLES
- * example03.c
+ * example03.c: typdef, structuras, void, bucles y condicionales
+ * 
  * Copyright (C) 2019 Ignacio Pérez Hurtado de Mendoza
  * http://www.cs.us.es/~ignacio
+ * Copyright (C) 2020 Miguel Ángel Martínez del Amor
+ * http://www.cs.us.es/~mdelamor
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,13 +21,12 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+// Para funciones matemáticas, no basta con incluir la librería math.
+// Debemos también compilar con la opción -lm. Por ejemplo:
+// gcc ejemplo03.c -o ejemplo03 -lm
+#include <math.h> 
 
 #include <stdio.h>
-#include <math.h> 
-// para funciones matematicas. Debemos compilar con la opcion -lm
-// por ejemplo:
-// gcc ejemplo03.c -o ejemplo03 -lm
-
 
 // Podemos renombrar tipos con typedef
 // sintaxis:
@@ -32,15 +34,11 @@
 
 // El tipo antiguo se puede seguir usando y se crea el tipo nuevo
 // como un alias del antiguo.
-
-typedef int ENTERO;
-
+typedef int entero;
 
 // Podemos definir variables globales, aunque ya sabemos que no es nada
 // recomendable...
-
-ENTERO variableGlobal = 42;
-
+entero variableGlobal = 42;
 
 // podemos definir funciones
 // sintaxis:
@@ -49,21 +47,29 @@ ENTERO variableGlobal = 42;
 //	... codigo...
 // }
 
-ENTERO suma(ENTERO a, ENTERO b)
+entero suma(entero a, entero b)
 {
-	ENTERO s = a + b;
+	entero s = a + b;
 	return s;
 }
 
 // Podemos definir estructuras, que son agrupaciones de datos
+// dispuestas por registros o campos.
 
-typedef struct
+struct punto
 {
 	double x;
 	double y;
-} PUNTO;
+};
 
-// Si una funcion no devuelve nada, su tipo es void
+// una variable de este tipo se puede definir así. Podemos acceder a cada
+// campo: ejPunto.x y ejPunto.y
+struct punto ejPunto;
+
+// para no tener que volver a poner struct siempre, podemos hacer un tipo sinónimo
+typedef struct punto PUNTO;
+
+// Si una función no devuelve nada, su tipo es void
 void imprimePunto(PUNTO a) 
 {
 	printf("(%lf,%lf)",a.x,a.y);
@@ -78,7 +84,6 @@ double distanciaEuclidea(PUNTO a, PUNTO b)
 }
 
 // La recursividad es posible, aunque no recomendable si lo que buscamos es eficiencia
-
 unsigned factorialRec(unsigned n)
 {
 	if (n==0) {
@@ -98,8 +103,8 @@ unsigned factorialIt1(unsigned n)
 {
 	unsigned factorial = 1;
 	while(n>0) {
-		factorial *= n; // Equivalente a    factorial = factorial * n;
-		n--;  // Equivalente a   n = n-1;
+		factorial *= n; // Equivalente a: factorial = factorial * n;
+		n--;  // Equivalente a: n = n-1;
 	}
 	return factorial;
 }
@@ -159,7 +164,7 @@ int main()
 	printf("El factorial de %d es %d\n",x,factorialIt1(x));
 	printf("El factorial de %d es %d\n",x,factorialIt2(x));
 	
-	// Los operadores && y || tienen evaluacion perezosa
+	// Los operadores && y || tienen evaluación perezosa
 	
 	int a = 24;
 	
@@ -168,7 +173,7 @@ int main()
 	}
 	
 	if (esPar(a) || a>20) {
-		printf("el numero %d es mayor de 20 y par\n",a);
+		printf("el numero %d es mayor de 20 o par\n",a);
 	}	
 	
 	if (a<20 && esPar(x)) {
@@ -177,15 +182,16 @@ int main()
 		printf("El numero %d no es menor de 20 y par\n",a);
 	}
 	
+	// se pueden extender los if con más casos alternativos condiconales
 	if (esPar(x) && a<20) {
 		printf("El numero %d es menor de 20 y par\n",a);
+	} else if (esPar(x)) {
+		printf("El numero %d es par\n",a);
+	} else if (a<20) {
+		printf("El numero %d es menor de 20\n",a);
 	} else {
-		printf("El numero %d no es menor de 20 y par\n",a);
+		printf("El número %d no es ni menor de 20 ni par\n");
 	}
-	
-	
-
-	
-	
+		
 	return 0;
 }

@@ -1,8 +1,11 @@
 /* 
- * C BY 8 EXAMPLES
- * example01.c
+ * C++ BY 8 EXAMPLES
+ * example01.c: hola mundo
+ * 
  * Copyright (C) 2019 Ignacio Pérez Hurtado de Mendoza
  * http://www.cs.us.es/~ignacio
+ * Copyright (C) 2020 Miguel Ángel Martínez del Amor
+ * http://www.cs.us.es/~mdelamor
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -38,7 +41,7 @@
  * C dispone de las estructuras típicas de los lenguajes de alto
  * nivel, pero a la vez permite un control a muy bajo nivel.
  * 
- * C no es un lenguaje interpretado tal como Python o R. Es necesario 
+ * C no es un lenguaje interpretado como Python o R. Es necesario 
  * utilizar una herramienta para compilar y enlazar los programas,
  * produciendo código máquina para el hardware objetivo.
  * 
@@ -63,15 +66,11 @@
  // Esto también, pero tiene que acabar en un salto de línea
  // Si quiero empezar otra linea, tengo que poner los símbolos de nuevo
  
- 
  // Para incluir bibliotecas se utiliza la instrucción #include
  #include <stdio.h> // stdio es la biblioteca para la entrada/salida estándar
  
- // Podemos definir constantes con #define
- #define PI 3.1415192654
- 
  // Todo programa C tiene una función principal llamada main
- // El formato de cualquier funcion es
+ // El formato de cualquier función es
  // <tipo_de_retorno> nombre_funcion(args...)
  // {
  //   cuerpo funcion
@@ -79,12 +78,14 @@
   
  int main()
  {
-	 // printf es la funcion para imprimir por pantalla.
-	 printf("SON LAS 8:30, DESPERTAD!!!\n");
+	 // printf es la función para imprimir por pantalla.
+	 // veremos más opciones en adelante.
+	 printf("QUIERO SABER MÁS DE C!!!\n");
 	 printf("Por cierto: Hola Mundo...\n");
 	 // \n es el caracter especial de salto de linea.
 	 return 0; 
 	 /* La función main devuelve un valor entero, habitualmente
-	  * se interpreta como el código de retorno del programa */
+	  * se interpreta como el código de retorno del programa.
+	  * Devolver 0 en el main significa que todo fue bien. */
 }
  

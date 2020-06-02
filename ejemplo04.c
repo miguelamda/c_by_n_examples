@@ -1,9 +1,12 @@
 /* 
- * C BY 8 EXAMPLES
- * example04.c
+ * C++ BY 8 EXAMPLES
+ * example04.c: estructura de un fichero C, y cabeceras (.h)
+ * 
  * Copyright (C) 2019 Ignacio Pérez Hurtado de Mendoza
  * http://www.cs.us.es/~ignacio
- *
+ * Copyright (C) 2020 Miguel Ángel Martínez del Amor
+ * http://www.cs.us.es/~mdelamor
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -18,10 +21,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-
 // Los programas en C suelen tener la siguiente estructura:
 
-
+////////////////////// COMIENZO CABECERA
 // BIBLIOTECAS
 // incluir todas las bibliotecas necesarias
 
@@ -32,10 +34,10 @@
 // definicion de tipos propios y estructuras
 
 // CABECERA DE FUNCIONES
-// Se incluye la cabecera de las funciones a utilizar, de esa forma se podran
-// usar en cualquier parte del programa
-
-//-------------- FIN DE LA CABECERA
+// Se incluye la cabecera de las funciones a utilizar, de esa forma se podrán
+// usar en cualquier parte del programa. Si no, solo se pueden usar las funciones
+// que se hayan definido arriba en el fichero.
+////////////////////// FIN CABECERA
 
 // VARIABLES GLOBALES
 
@@ -43,12 +45,13 @@
 
 // RESTO DE FUNCIONES
 
-
+// Para exportar funciones, tipos abstractos de datos, etc, se hace uso de cabeceras.
 // La cabecera se suele escribir en ficheros con extension .h y el codigo de las
 // funciones en ficheros con extension .c
 // En este mini-curso, por sencillez, vamos a escribir todo en los ficheros .c
 // lo cual tambien es posible, pero vamos a respetar la estructura anterior.
 
+////////////////////// COMIENZO CABECERA
 
 // BIBLIOTECAS
 #include <stdio.h>
@@ -73,7 +76,7 @@ void imprimePunto(PUNTO a);
 // VARIABLES GLOBALES
 PUNTO CERO = {0.0,0.0};
 
-//-------------- FIN DE LA CABECERA
+////////////////////// FIN CABECERA
 
 
 // FUNCION MAIN
@@ -103,7 +106,7 @@ int main()
 	return 0;
 }
 
-// RESTO DE FUNCIONES
+// RESTO DE FUNCIONES (quedaron pendientes de definir...)
 double distanciaEuclidea(PUNTO a, PUNTO b)
 {
 	return sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));

@@ -2,7 +2,7 @@
 
 A C course by N examples, with N=8 / Un curso de C con N ejemplos, con N=8.
 
-Para compilar un fichero: `gcc ejemplox.c -o ejemplox`
+Para compilar un ejemplo: `gcc ejemplox.c -o ejemplox`   (es posible que necesite añadir la librería math.h con poniendo `-lm´).
 
 Lista de ejemplos:
 1. Hola mundo

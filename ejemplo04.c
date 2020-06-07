@@ -1,5 +1,5 @@
 /* 
- * C++ BY 8 EXAMPLES
+ * C BY 8 EXAMPLES
  * example04.c: estructura de un fichero C, y cabeceras (.h)
  * 
  * Copyright (C) 2019 Ignacio Pérez Hurtado de Mendoza
@@ -21,7 +21,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-// Los programas en C suelen tener la siguiente estructura:
+// Los programas en C suelen tener la siguiente estructura (no obligatoria):
 
 ////////////////////// COMIENZO CABECERA
 // BIBLIOTECAS
@@ -39,11 +39,13 @@
 // que se hayan definido arriba en el fichero.
 ////////////////////// FIN CABECERA
 
+////////////////////// CUERPO
 // VARIABLES GLOBALES
 
 // FUNCION MAIN
 
 // RESTO DE FUNCIONES
+////////////////////// CUERPO
 
 // Para exportar funciones, tipos abstractos de datos, etc, se hace uso de cabeceras.
 // La cabecera se suele escribir en ficheros con extension .h y el codigo de las

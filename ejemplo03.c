@@ -125,13 +125,14 @@ unsigned factorialIt1(unsigned n)
 
 unsigned factorialIt2(unsigned n)
 {
+	unsigned i; // el iterador del bucle
 	unsigned factorial = 1;
-	for (unsigned i = 2; i<=n; i++) {
+	for (i = 2; i<=n; i++) {   // i++ equivale a i=i+1
 		factorial *= i;
 	}
 	return factorial;
-}
 
+}
 
 int esPar(int x) {
 	printf("entra en la funcion esPar(x)\n");
@@ -176,22 +177,32 @@ int main()
 		printf("el numero %d es mayor de 20 o par\n",a);
 	}	
 	
-	if (a<20 && esPar(x)) {
+	if (a<20 && esPar(a)) {
 		printf("El numero %d es menor de 20 y par\n",a);
 	} else {
 		printf("El numero %d no es menor de 20 y par\n",a);
 	}
 	
-	// se pueden extender los if con más casos alternativos condiconales
-	if (esPar(x) && a<20) {
+	// se pueden extender los if con más casos alternativos condicionales
+	if (esPar(a) && a<20) {
 		printf("El numero %d es menor de 20 y par\n",a);
-	} else if (esPar(x)) {
+	} else if (esPar(a)) {
 		printf("El numero %d es par\n",a);
 	} else if (a<20) {
 		printf("El numero %d es menor de 20\n",a);
 	} else {
-		printf("El número %d no es ni menor de 20 ni par\n");
+		printf("El número %d no es ni menor de 20 ni par\n",a);
 	}
+
+	// con if, for, while... si el bloque que contiene consta de una 
+	// sola línea, se puede evitar las llaves. Esto no es aconsejable
+	// hacerlo porque se nos puede olvidar poner las llaves si hay
+	// que añadir otra línea. Pero bueno, bien está saberlo... no?
+	if (esPar(a) && a<20) printf("El numero %d es menor de 20 y par\n",a);
+	else if (esPar(a)) printf("El numero %d es par\n",a);
+	else if (a<20)
+		printf("El numero %d es menor de 20\n",a);
+	else printf("El número %d no es ni menor de 20 ni par\n",a);
 		
 	return 0;
 }

@@ -1,10 +1,12 @@
 /* 
  * C BY 8 EXAMPLES
- * example05.c
+ * example05.c: punteros de memoria
  * 
  * Copyright (C) 2019 Ignacio Pérez Hurtado de Mendoza
  * http://www.cs.us.es/~ignacio
- *
+ * Copyright (C) 2020 Miguel Ángel Martínez del Amor
+ * http://www.cs.us.es/~mdelamor
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -19,7 +21,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
  
- 
+
 // BIBLIOTECAS
  #include <stdio.h>
  #include <math.h>
@@ -27,13 +29,13 @@
  // CONSTANTES
  #define PI 3.14159265358979323846L
  
- // TIPOS
+ // TIPOS (otra forma de definir un struct, más directo)
 typedef struct {
 	double x;
 	double y;
 } PUNTO;
 
-// CABECERA DE FUNCIONES
+// CABECERA DE FUNCIONES (ya veremos que significan esos asteriscos...)
 double distanciaEuclidea(PUNTO* a, PUNTO* b);
 void intercambia(int* a, int* b);
 int* malamente();
@@ -49,13 +51,13 @@ int main()
 	// que sirve para almacenar direcciones de memoria RAM
 	
 	// Entendemos la RAM como un "casillero" en donde se almacenan
-	// datos, cada casilla tiene una direccion 
+	// datos, cada casilla tiene una dirección 
 	
 	// DIR    DATO
 	// 0x100   x
 	// 0x104   y
 	
-	// La unidad es el byte, en el ejemplo anterior, cada dato es de 4 bytes
+	// La unidad es el byte. En el ejemplo anterior, cada dato es de 4 bytes
 	
 	// podemos definir una variable de tipo puntero añadiendo el asterisco *
 	// al tipo de dato referenciado por el puntero
@@ -65,7 +67,7 @@ int main()
 	int* pt1;
 	
 	// es un puntero para almacenar direcciones de memoria que contienen
-	// valores de tipo entero (4 bytes en la mayoria de las maquinas)
+	// valores de tipo entero (4 bytes en la mayoria de las máquinas)
 	
 	double* pt2;
 	
@@ -76,7 +78,7 @@ int main()
 	int a = 10;
 	double b = PI;
 	
-	// podemos obtener su direccion de memoria mediante el operador &
+	// podemos obtener su dirección de memoria mediante el operador &
 	
 	pt1 = &a; // punteros de tipo int* almacenan direcciones de memoria de variables int
 	pt2 = &b; // punteros de tipo double* almacenan direcciones de memoria de variables double
@@ -84,7 +86,7 @@ int main()
 	// pt1 ---> a
 	// pt2 ---> b
 	
-	// para imprimir una direccion de memoria podemos usar el siguente formato
+	// para imprimir una dirección de memoria podemos usar el siguente formato
 	
 	printf("La variable a tiene un valor %d y se encuentra en la direccion %p de la memoria RAM\n",a,pt1);
 	printf("La variable b tiene un valor %lf y se encuentra en la direccion %p de la memoria RAM\n",b,pt2);
@@ -93,16 +95,18 @@ int main()
 	
 	*pt1 = *pt1 + 2;
 	
-	// El * en la anterior expresion es un operador unario para obtener el valor de la variable apuntada por el puntero
-	// no confundir con la declaracion del puntero int* pt1; 
-	// aunque a veces veremos int *pt1; pero eso es porque sintacticamente es posible (al fin y al cabo los espacios no significan nada en C)
+	// El * en la anterior expresión es un operador unario para obtener el valor de la variable
+	// apuntada por el puntero (en el ejemplo, el valor de la variable a). Esto no debe
+	// confundirse con la declaración del puntero int* pt1; 
+	// Aunque a veces veremos int *pt1; pero eso es porque sintácticamente es posible
+	// (al fin y al cabo los espacios no significan nada en C)
 	
 	// ahora la variable a ha sido modificada
 	printf("Nuevo valor de a: %d\n",a);
 	
 	printf("Tambien podemos consultar la variable usando su puntero: %d\n", *pt1);
 	
-	// Un puntero no inicializado puede recibir el valor NULL 
+	// Un puntero no inicializado puede recibir el valor NULL (esto es una buena práctica)
 	int *pt3 = NULL;
 	
 	// que viene bien para chequear precisamente si ha sido inicializado o no
@@ -111,9 +115,11 @@ int main()
 		printf("El puntero pt3 no está inicializado\n");
 	}
 	
-	// en los ejemplos anteriores hemos visto funciones con argumentos que se pasan por valor, por ejemplo: int esPar(int x) recibe un valor que
-	// se copia en la variable local x. Esto no es recomendable para estructuras de datos o arrays (que veremos mas adelante), ya que la copia
-	// consume un tiempo O(n). En esos casos es recomendable pasar los argumentos por referencia, es decir usando punteros. Por ejemplo:
+	// En los ejemplos anteriores hemos visto funciones con argumentos que se pasan por valor,
+	// por ejemplo: int esPar(int x) recibe un valor que se copia en la variable local x. 
+	// Esto no es recomendable para estructuras de datos o arrays (que veremos mas adelante),
+	// ya que la copia consume un tiempo O(n). En esos casos es recomendable pasar los argumentos 
+	// por referencia. En C esto se consigue usando punteros. Por ejemplo:
 	
 	PUNTO u;
 	u.x = 10.4;
@@ -126,10 +132,17 @@ int main()
 	
 	printf("Distancia entre u y v: %lf\n",distanciaEuclidea(&u,&v));
 	
-	// Por regla general, los tipos de datos simples (char, short, int, long, float, double...) se pasan por valor. Las estructuras y arrays por referencia.
+	// Por regla general, los tipos de datos simples (char, short, int, long, float, double...)
+	// se pasan por valor. Las estructuras y arrays por referencia.
 	
-	// Ya que podemos modificar una variable mediante su puntero, pasar un argumento a una funcion por referencia implica que ese argumento es de entrada/salida
-	// Asi que usaremos punteros en las funciones o bien para pasar estructuras y arrays o bien cuando queramos argumentos de entrada/salida
+	// Ya que podemos modificar una variable mediante su puntero, pasar un argumento a una 
+	// función por referencia implica que ese argumento es de entrada/salida. Si lo piensas un
+	// momento, verás que en realidad a una función se le pasa los argumentos por valor, pero
+	// si le pasas un puntero, ese puntero no se cambia (por valor) pero sí se puede cambiar
+	// la posición de memoria a la que apunta.
+
+	// Así que usaremos punteros en las funciones para pasar estructuras y arrays o bien
+	// cuando queramos argumentos de entrada/salida. El truco está en usar &.
 	
 	int x = 42;
 	int y = 24;
@@ -140,22 +153,24 @@ int main()
 	
 	printf("x vale %d, y vale %d\n",x,y);
 	
-	// las variables en C tienen "vigencia" en su ámbito, por ejemplo: cuerpo de una función, cuerpo de un bucle, cuerpo de un if-else. Un error muy habitual
-	// es usar el puntero a una variable que ha salido de su ámbito. Por ejemplo, que una funcion devuelva como resultado un puntero a una variable local.
-	// mirar la funcion "malamente". 
+	// Las variables en C tienen "vigencia" en su ámbito, por ejemplo: cuerpo de una función,
+	// cuerpo de un bucle, cuerpo de un if-else. Un error muy habitual es usar el puntero a una
+	// variable que ha salido de su ámbito. Por ejemplo, que una función devuelva como resultado 
+	// un puntero a una variable local. Mira la función "malamente". 
 	
 	// Descomenta la siguiente linea para disfrutar de tu primer "segmentation fault" o "violacion de segmento"
 	// int bienvenidos_a_vuestra_primera_violacion_de_segmento = *malamente();
 	
-	// una violacion de segmento es un error muy habitual en C y suele ocurrir cuando se utiliza un puntero invalido, ya sea porque no se ha inicializado
-	// o porque hace referencia a una variable que ha salido de su ámbito. También puede ocurrir cuando se intenta acceder a zonas de memoria restringidas
-	// al usuario, como puede ser la memoria RAM que usa el sistema operativo.
-	
+	// Una violación de segmento es un error muy habitual en C y suele ocurrir cuando se utiliza un
+	// puntero inválido, ya sea porque no se ha inicializado o porque hace referencia a una variable 
+	// que ha salido de su ámbito. También puede ocurrir cuando se intenta acceder a zonas de memoria
+	// restringidas al usuario, como puede ser la memoria RAM que usa el sistema operativo.
 	
 	printf("Variable global: %d\n",*no_tan_malamente());
 	
-	// A continuacion una composición de punteros, un puntero que apunta a direcciones de memoria que contienen punteros que apuntan a direcciones de memoria que
-	// contienen valores de tipo entero: 
+	// A continuación una composición de punteros. Quizás pueda sonar loco, pero un puntero puede apuntar
+	// otra variable que a su vez es un puntero. Es decir, un puntero que apunta a direcciones de memoria que 
+	// contienen punteros que apuntan a direcciones de memoria que contienen valores de tipo entero: 
 	int** pt4;
 	
 	pt4 = &pt1;
@@ -164,7 +179,8 @@ int main()
 	
 	printf("El valor de la variable a traves de un puntero doble: %d\n",**pt4);
 	
-	// Debido a que la memoria esta alineada, los punteros simples serviran tambien para referenciar la posicion de origen de un vector o array y los punteros 
+	// Debido a que la memoria esta alineada (en bytes), los punteros simples servirán también para 
+	// referenciar la posicion de origen de un vector o array y los punteros 
 	// dobles para matrices. Pero lo veremos en el siguiente ejemplo.
 	
 	// Para leer un valor del teclado, se usa scanf 
@@ -173,7 +189,9 @@ int main()
 	
 	printf("El valor introducido es %d\n",a);
 	
-	// Observese que scanf es muy parecido a printf, pero scanf trabaja con direcciones de memoria
+	// Observese que scanf es muy parecido a printf, pero scanf trabaja con direcciones de memoria (ya
+	// que necesita guardar un valor leído, y eso no es posible a no ser que se pase el puntero a 
+	// una posición de memoria)
 	
 	return 0;
 	
@@ -197,7 +215,9 @@ void intercambia(int* a, int* b)
 int* malamente()
 {
 	int x = 42;
-	return &x; // MUY MAL! la variable x es local a la funcion y cuando se termina la funcion se libera memoria y el puntero no es valido
+	return &x; // MUY MAL! la variable x es local a la función y cuando se termina
+	           // se libera memoria y el puntero no es válido (apunta a una posición de memoria que
+			   // ya no se controla)
 }
 
 int* no_tan_malamente()

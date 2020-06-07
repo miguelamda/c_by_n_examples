@@ -1,5 +1,5 @@
 /* 
- * C++ BY 8 EXAMPLES
+ * C BY 8 EXAMPLES
  * example02.c: tipos, printf y operaciones aritmético-lógicas
  * 
  * Copyright (C) 2019 Ignacio Pérez Hurtado de Mendoza

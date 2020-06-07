@@ -1,5 +1,5 @@
 /* 
- * C++ BY 8 EXAMPLES
+ * C BY 8 EXAMPLES
  * example01.c: hola mundo
  * 
  * Copyright (C) 2019 Ignacio Pérez Hurtado de Mendoza

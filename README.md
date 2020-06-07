@@ -13,3 +13,8 @@ Lista de ejemplos:
 6. Arrays estáticos, números aleatorios y aritmética de punteros
 7. Arrays y memoria dinámica
 8. Matrices con arrays y memoria dinámica
+
+Lecturas recomendadas:
+* Para iniciarse en C y C++ rápidamente, las prácticas de este curso: http://dis.um.es/~ginesgm/aed1.html
+* Para profundizar en C, el libro: **C Programming Language (Prentice Hall Software), Brian W. Kernighan, Dennis M. Ritchie.**
+* Para profundizar en C++, el libro: **The C++ Programming Language, Bjarne Stroustrup**
